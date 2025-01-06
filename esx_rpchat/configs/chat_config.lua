@@ -16,15 +16,9 @@ wx.LOOCAdminPrefixes = false -- Enable admin prefixes for LOOC messages. (If adm
 wx.Commands = {
 -- Don't Touch             /command name
     ["Status"]              = "status",
-    ["Here"]                = "here",
-    ["Advertisement"]       = "ad",
-    ["EMS"]                 = "ems",
-    ["Police"]              = "police",
-    ["Sheriff"]             = "sheriff",
     ["Blackmarket"]         = "bm",
-    ["Twitter"]             = "tweet",
     ["Staff Announcement"]  = "staff",
-    ["Job"]                 = "job",
+    ["Job"]                 = "job"
 }
 
 wx.Suggestions = { -- /command suggestions that will pop up in chat (Make sure to add /)
