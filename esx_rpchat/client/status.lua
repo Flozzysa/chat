@@ -11,48 +11,6 @@ end)
 
 local displayedMessages = {}
 
-RegisterCommand(wx.Commands['Here'], function(source, args, rawCommand)
-    if playerLoaded then
-        local ped = PlayerPedId()
-        local pedCoords = GetEntityCoords(ped)
-        local roundedCoords = vector3(ESX.Math.Round(pedCoords.x), ESX.Math.Round(pedCoords.y), ESX.Math.Round(pedCoords.z))
-        if not displayedMessages[roundedCoords] then
-            local playerMessages = 0
-            for k, v in pairs(displayedMessages) do -- Check for spam
-                if v.owner == GetPlayerServerId(PlayerId()) then
-                    playerMessages = playerMessages + 1
-                end
-            end
-
-            if playerMessages > wx.MaxHereTexts then
-                Notify('Error',"You can't place more than "..wx.MaxHereTexts..' texts')
-            else
-                local msg = ''
-                for i = 1,#args do
-                    msg = msg .. ' ' .. args[i]
-                end
-                local currentMessage = {
-                    owner = GetPlayerServerId(PlayerId()),
-                    coords = pedCoords,
-                    message = msg
-                }
-
-                TriggerServerEvent('chat:SyncMessage', currentMessage, roundedCoords)
-            end
-
-        elseif displayedMessages[roundedCoords].owner == GetPlayerServerId(PlayerId()) then
-            TriggerServerEvent('chat:removeDisplayedMessage', roundedCoords)
-            Notify('Success','Text has been removed')
-        else
-            Notify('Error','Another text is already placed here')
-        end
-    else
-        Notify('Error','You must be spawned')
-    end
-    
-end, false)
-
-
 RegisterNetEvent('chat:SetMessage')
 AddEventHandler('chat:SetMessage', function(message, coords)
 
