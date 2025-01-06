@@ -7,11 +7,13 @@ lua54 'yes'
 
 server_scripts {
 	'@mysql-async/lib/MySQL.lua',
-	'server/*.lua'
+	'server/*.lua',
+	'esx_garage/server/garage_server.lua'
 }
 
 client_scripts {
-	'client/*.lua'
+	'client/*.lua',
+	'esx_garage/client/garage_client.lua'
 }
 
 shared_scripts {'@ox_lib/init.lua', 'configs/*.lua'}
