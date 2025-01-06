@@ -153,4 +153,11 @@ GarageConfig.Locations = {
         Position = vector3(-850.1674, -1498.1183, 1.6342),
         SpawnPosition = vector4(-844.0901, -1540.3718, -0.4741, 136.1160)
     },
+    {
+        Visible = true,
+        Type = 'car',
+        Position = vector3(123.4567, -789.0123, 34.5678),
+        SpawnPosition = vector4(120.1234, -785.6789, 34.5678, 90.1234),
+        Interior = 'medium'
+    }
 }

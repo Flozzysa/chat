@@ -6,10 +6,11 @@ AddEventHandler('esx_garage:storeVehicle', function(vehicleProps)
     local xPlayer = ESX.GetPlayerFromId(source)
     local vehiclePlate = vehicleProps.plate
 
-    MySQL.Async.execute('INSERT INTO owned_vehicles (owner, plate, vehicle) VALUES (@owner, @plate, @vehicle)', {
+    MySQL.Async.execute('INSERT INTO owned_vehicles (owner, plate, vehicle, stored) VALUES (@owner, @plate, @vehicle, @stored)', {
         ['@owner'] = xPlayer.identifier,
         ['@plate'] = vehiclePlate,
-        ['@vehicle'] = json.encode(vehicleProps)
+        ['@vehicle'] = json.encode(vehicleProps),
+        ['@stored'] = 0
     }, function(rowsChanged)
         if rowsChanged > 0 then
             TriggerClientEvent('esx:showNotification', source, 'Vehicle stored successfully!')
@@ -25,7 +26,7 @@ AddEventHandler('esx_garage:recoverVehicle', function(plate)
     local xPlayer = ESX.GetPlayerFromId(source)
     local recoveryCost = 500 -- Example recovery cost
 
-    MySQL.Async.fetchAll('SELECT * FROM owned_vehicles WHERE owner = @owner AND plate = @plate', {
+    MySQL.Async.fetchAll('SELECT *, stored FROM owned_vehicles WHERE owner = @owner AND plate = @plate', {
         ['@owner'] = xPlayer.identifier,
         ['@plate'] = plate
     }, function(result)

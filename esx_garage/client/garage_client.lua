@@ -21,7 +21,8 @@ local garageLocations = {
     {x = -1667.8083, y = 72.3026, z = 63.5343, type = 'car'},
     {x = -387.9319, y = -107.0117, z = 38.6853, type = 'car'},
     {x = -1182.7245, y = -2852.9495, z = 14.0404, type = 'air'},
-    {x = -850.1674, y = -1498.1183, z = 1.6342, type = 'boat'}
+    {x = -850.1674, y = -1498.1183, z = 1.6342, type = 'boat'},
+    {x = 123.4567, y = -789.0123, z = 34.5678, type = 'car'}  -- New garage location
 }
 
 local function openGarageMenu()
